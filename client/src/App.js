@@ -1,12 +1,29 @@
 import React from 'react'
+import {BrowserRouter as Router,
+		Switch,
+		Route
+} from 'react-router-dom'
+import Navbar from './views/navbar/Navbar'
+import './App.css'
+import Contacts from './views/Contacts'
+import History from './views/History'
+import OpenInvoice from './views/OpenInvoice'
+import Profile from './views/Profile'
 
-import Home from './views/Home'
 
 function App() {
 	return (
-		<div>
-			<Home />
-		</div>	
+		<>
+			<Router>
+				<Navbar />
+				<Switch>
+					<Route exact path='/' component={Contacts} />	
+					<Route path='/openInvoice' component={OpenInvoice} />
+					<Route path='/history' component={History} />
+					<Route path='/profile' component={Profile} />
+				</Switch>
+			</Router>
+		</>
 	)
 }
 
