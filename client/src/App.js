@@ -17,7 +17,7 @@ function App() {
 			<Router>
 				<Navbar />
 				<Switch>
-					<Route exact path='/' component={Contacts} />	
+					<Route exact path='/contacts' component={Contacts} />	
 					<Route path='/openInvoice' component={OpenInvoice} />
 					<Route path='/history' component={History} />
 					<Route path='/profile' component={Profile} />
