@@ -5,11 +5,11 @@ import {BrowserRouter as Router,
 } from 'react-router-dom'
 import Navbar from './views/navbar/Navbar'
 import './App.css'
-import Contacts from './views/Contacts'
+import Contacts from './views/contact/Contacts'
 import History from './views/History'
 import OpenInvoice from './views/OpenInvoice'
 import Profile from './views/Profile'
-import UserInfo from './views/UserInfo'
+import EditContact from './views/contact/EditContact'
 
 function App() {
 	return (
@@ -21,7 +21,7 @@ function App() {
 					<Route path='/openInvoice' component={OpenInvoice} />
 					<Route path='/history' component={History} />
 					<Route path='/profile' component={Profile} />
-					<Route path='/userInfo' component={UserInfo} />
+					<Route path='/editContact' component={EditContact} />
 				</Switch>
 			</Router>
 		</>
