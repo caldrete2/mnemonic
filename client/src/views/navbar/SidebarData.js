@@ -6,7 +6,7 @@ import * as CgIcons from 'react-icons/cg'
 export const SidebarData = [
 	{
 		title: 'Contacts',
-		path: '/contacts',
+		path: '/',
 		icon: <AiIcons.AiFillContacts />,
 		cName: 'nav-text'
 	},

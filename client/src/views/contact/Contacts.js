@@ -26,7 +26,6 @@ class Contacts extends Component {
 
 	render() {
 		const {data} = this.state
-		console.log(data)
 		const contactList = data.map((elem, i)=> {
 			return(
 				<div 
@@ -66,7 +65,10 @@ class Contacts extends Component {
 
 		return (
 			<div className='contacts'>
-				{contactList}							
+				{contactList}
+				<Link to='/addContact'>
+					<button>ADD</button>
+				</Link>									
 			</div>
 		)
 	}

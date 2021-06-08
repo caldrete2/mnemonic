@@ -10,6 +10,7 @@ import History from './views/History'
 import OpenInvoice from './views/OpenInvoice'
 import Profile from './views/Profile'
 import EditContact from './views/contact/EditContact'
+import AddContact from './views/contact/AddContact'
 
 function App() {
 	return (
@@ -17,7 +18,8 @@ function App() {
 			<Router>
 				<Navbar />
 				<Switch>
-					<Route exact path='/contacts' component={Contacts} />	
+					<Route exact path='/' component={Contacts} />
+					<Route path='/addContact' component={AddContact} />	
 					<Route path='/openInvoice' component={OpenInvoice} />
 					<Route path='/history' component={History} />
 					<Route path='/profile' component={Profile} />
