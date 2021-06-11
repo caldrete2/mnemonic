@@ -10,6 +10,7 @@ class EditContact extends Component {
 
 		this.handleChange = this.handleChange.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
+		this.handleDelete = this.handleDelete.bind(this)
 	}
 
 	handleChange(event) {
@@ -34,10 +35,18 @@ class EditContact extends Component {
 		event.preventDefault()
 		const {data} = this.state
 		console.log(data)
-		axios.post('api/post/contact', data)
+		axios.post('api/post/updatecontact', data)
 			.then(res => console.log(res, data)) 
 			.catch((err) => console.log(err))
 	
+	}
+
+	handleDelete(event) {
+		event.preventDefault()
+		const {ukey} = this.state.data
+		axios.delete('api/delete/contact', ukey)
+			.then(res => console.log(res, ukey))
+			.catch((err) => console.log(err))
 	}
 
 	render() {
@@ -62,10 +71,13 @@ class EditContact extends Component {
 			<main>
 				<form>
 					{contactForm}
-					<button 
-						type='submit'
-						onClick={this.handleSubmit}
-					> Submit </button>		
+					<div className='editButton'>
+						<button 
+							type='submit'
+							onClick={this.handleSubmit}
+						>Submit</button>		
+						<button onClick={this.handleDelete}>Delete</button>		
+					</div>
 				</form>
 			</main>
 		)
