@@ -44,7 +44,7 @@ class EditContact extends Component {
 	handleDelete(event) {
 		event.preventDefault()
 		const {ukey} = this.state.data
-		axios.delete('api/delete/contact', ukey)
+		axios.delete('api/delete/contact', {params: {key: ukey}})
 			.then(res => console.log(res, ukey))
 			.catch((err) => console.log(err))
 	}
