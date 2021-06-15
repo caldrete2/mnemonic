@@ -65,11 +65,10 @@ router.post('/api/post/newcontact', (req, res) => {
 
 router.delete('/api/delete/contact', (req, res) => {
 	const a_text = 'DELETE FROM addr WHERE user_id=$1'	
-	const value = [req.body.ukey]
-
+	const value = [req.query.key]
 	pool
 		.query(a_text, value)
-		.then(() => {
+		.then(res => {
 			const u_text = 'DELETE FROM users WHERE user_id=$1'
 			pool
 				.query(u_text, value)
