@@ -1,0 +1,7 @@
+.invoiceContainer {
+	display: flex;
+}
+
+.invoiceInfo {
+	padding-left: 110px;
+}

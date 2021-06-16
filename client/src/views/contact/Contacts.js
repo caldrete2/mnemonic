@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import * as MdIcons from 'react-icons/md'
-//import * as FaIcons from 'react-icons/fa'
+import * as FaIcons from 'react-icons/fa'
 import * as IoIcons from 'react-icons/io'
 import * as SiIcons from 'react-icons/si'
 import * as ImIcons from 'react-icons/im'
@@ -33,6 +33,13 @@ class Contacts extends Component {
 					className='contact'
 				>	
 					<div className='contact-action'>
+						
+						<Link to={{
+							pathname: '/createInvoice',
+							state: elem	
+						}}>
+							<FaIcons.FaFileInvoice/>
+						</Link>
 						<Link to={{
 							pathname: '/editContact',
 							state: {

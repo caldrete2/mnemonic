@@ -11,6 +11,7 @@ import OpenInvoice from './views/OpenInvoice'
 import Profile from './views/Profile'
 import EditContact from './views/contact/EditContact'
 import AddContact from './views/contact/AddContact'
+import CreateInvoice from './views/invoice/CreateInvoice'
 
 function App() {
 	return (
@@ -24,6 +25,7 @@ function App() {
 					<Route path='/history' component={History} />
 					<Route path='/profile' component={Profile} />
 					<Route path='/editContact' component={EditContact} />
+					<Route path='/createInvoice' component={CreateInvoice} />
 				</Switch>
 			</Router>
 		</>
