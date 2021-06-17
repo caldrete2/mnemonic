@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import CreateDetails from './CreateDetails'
 import InvoiceDetails from './InvoiceDetails'
+import DisplayDetails from './DisplayDetails'
 import './CreateInvoice.css'
 
 class CreateInvoice extends Component {
@@ -20,9 +21,7 @@ class CreateInvoice extends Component {
 	}
 
 	componentDidMount() {
-		this.setState({
-			data: this.props.location.state
-		})
+		this.setState({ data: this.props.location.state })
 	}
 
 	handleAddDetail(event) {
@@ -44,9 +43,7 @@ class CreateInvoice extends Component {
 
 	handleChange(event) {
 		const {name, value} = event.target
-		this.setState({
-			[name]: value	
-		})
+		this.setState({ [name]: value })
 	}
 
 	render() {
@@ -54,15 +51,17 @@ class CreateInvoice extends Component {
 		return(
 			<div>
 				<div className='invoiceContainer'>
-					<div>
+					<div className='detail-container'>
 						<CreateDetails 
 							desc={desc}
 							rate={rate}
 							qty={qty}
-							handleChange={this.handleChange}/>
-						<button 
+							handleChange={this.handleChange}
+						/>
+						<button id='detail-button'
 							onClick={this.handleAddDetail}
 						>Add</button>
+						<DisplayDetails details={details}/>
 					</div>
 					<div className='invoiceInfo'>
 						<div className='contactInfo'>
@@ -73,12 +72,10 @@ class CreateInvoice extends Component {
 							<p>{data.city}, {data.state}</p>
 						</div>
 						<InvoiceDetails details={details}/>
-
 					</div>
 				</div>
 			</div>
 		)
 	}
-
 }
 export default CreateInvoice

@@ -2,7 +2,7 @@
 	padding-top: 20px;
 }
 
-#invoice-table th{
+#invoice-table th, td { 
 	padding-right: 25px;
 	text-align: left;
 }
