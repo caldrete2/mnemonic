@@ -1,44 +1,27 @@
 import React, {Component} from 'react'
-import CreateDetails from './CreateDetails'
-import InvoiceDetails from './InvoiceDetails'
-import DisplayDetails from './DisplayDetails'
+import LeftContainer from './leftcontainer/InvoiceLeftContainer'
+import RightContainer from './InvoiceRightContainer'
 import './CreateInvoice.css'
 
 class CreateInvoice extends Component {
-	constructor(props) {
-		super(props)
+	constructor() {
+		super()
 		this.state = {
-			data: [],
-			details: [],
-			totalDue: '',
+			unit: '',
+			po: '',
 			desc: '',
 			rate: '',
-			qty: ''
+			qty: '',
+			material: '',
+			count: '',
+			cost: '',
+			labor: '',
+			details: [],
+			mdata: []	
 		}
 
 		this.handleChange = this.handleChange.bind(this)
-		this.handleAddDetail = this.handleAddDetail.bind(this)
-	}
-
-	componentDidMount() {
-		this.setState({ data: this.props.location.state })
-	}
-
-	handleAddDetail(event) {
-		const {details, desc, rate, qty} = this.state
-		const dObj = {}
-		
-		dObj.desc = desc
-		dObj.rate = rate
-		dObj.qty = qty
-		
-		const dTemp = details.concat(dObj)
-		this.setState({
-			details: dTemp,
-			desc: '',
-			rate: '',
-			qty: ''	
-		})
+		this.buttonClick = this.buttonClick.bind(this)
 	}
 
 	handleChange(event) {
@@ -46,36 +29,47 @@ class CreateInvoice extends Component {
 		this.setState({ [name]: value })
 	}
 
+	buttonClick(event) {
+		event.preventDefault()
+		const {desc, rate, qty, details, cost, count, mdata, material} = this.state
+		const {name} = event.target
+		const dObj = {desc: desc, rate: rate, qty: qty, total: '0.00'}
+		const mObj = {material: material, cost: cost, count: count, total: '0.00'}	
+
+		var temp = []
+		if(name==='detail-button') {
+			let temp = details.concat(dObj)
+			this.setState({
+				details: temp,
+				desc: '',
+				qty: '',
+				rate: '' 	
+			})
+		} else {
+			let temp = mdata.concat(mObj)
+			this.setState({
+				mdata: temp,
+				count: '',
+				cost: '',
+				material: ''	
+			})
+		}
+	}
+
 	render() {
-		const {data, desc, rate, qty, details} = this.state
+		console.log(this.state)
+
 		return(
-			<div>
-				<div className='invoiceContainer'>
-					<div className='detail-container'>
-						<CreateDetails 
-							desc={desc}
-							rate={rate}
-							qty={qty}
-							handleChange={this.handleChange}
-						/>
-						<button id='detail-button'
-							onClick={this.handleAddDetail}
-						>Add</button>
-						<DisplayDetails details={details}/>
-					</div>
-					<div className='invoiceInfo'>
-						<div className='contactInfo'>
-							<h3>{data.name}</h3>
-							<p>{data.email}</p>
-							<p>{data.phone}</p>
-							<p>{data.street}</p>
-							<p>{data.city}, {data.state}</p>
-						</div>
-						<InvoiceDetails details={details}/>
-					</div>
-				</div>
+			<div id='invoice-container'>
+				<LeftContainer 
+					state={this.state}
+					handleChange={this.handleChange}
+					detailClick={this.buttonClick}
+				/>				
+				<RightContainer />
 			</div>
 		)
 	}
+
 }
 export default CreateInvoice
