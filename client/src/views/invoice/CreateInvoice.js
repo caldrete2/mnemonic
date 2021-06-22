@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import LeftContainer from './leftcontainer/InvoiceLeftContainer'
-import RightContainer from './InvoiceRightContainer'
+import RightContainer from './rightcontainer/InvoiceRightContainer'
 import './CreateInvoice.css'
 
 class CreateInvoice extends Component {
@@ -36,7 +36,6 @@ class CreateInvoice extends Component {
 		const dObj = {desc: desc, rate: rate, qty: qty, total: '0.00'}
 		const mObj = {material: material, cost: cost, count: count, total: '0.00'}	
 
-		var temp = []
 		if(name==='detail-button') {
 			let temp = details.concat(dObj)
 			this.setState({
@@ -57,7 +56,7 @@ class CreateInvoice extends Component {
 	}
 
 	render() {
-		console.log(this.state)
+		const {unit, po, mdata, details} = this.state
 
 		return(
 			<div id='invoice-container'>
@@ -66,7 +65,13 @@ class CreateInvoice extends Component {
 					handleChange={this.handleChange}
 					detailClick={this.buttonClick}
 				/>				
-				<RightContainer />
+				<RightContainer
+					state={this.props.location.state}
+					unit={unit}
+					po={po}
+					details={details}
+					materials={mdata}
+				 />
 			</div>
 		)
 	}
