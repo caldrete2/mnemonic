@@ -16,7 +16,8 @@ class Navbar extends Component {
 		this.showSideBar = this.showSideBar.bind(this)
 	}
 
-	showSideBar() {
+	showSideBar(event) {
+		event.preventDefault()
 		const {sidebar} = this.state
 		this.setState({sidebar: !sidebar})
 	}
