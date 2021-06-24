@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
+import * as FaIcons from 'react-icons/fa'
+import './DetailsDisplay.css'
 
 class DetailsDisplay extends Component {
 	render() {
-		const {data} = this.props
+		const {data, handleDelete} = this.props
 		const detailList = data.map((elem, i) => {
 			return(
 				<tr key={i}>
@@ -10,14 +12,17 @@ class DetailsDisplay extends Component {
 					<td>{elem.rate}</td>
 					<td>{elem.qty}</td>
 					<td>{elem.total}</td>
+					<td><FaIcons.FaTrash 
+							onClick={()=> handleDelete(elem, 'details')}
+						/></td>
 				</tr>
 			)
 		})
 
-		console.log(data)
+
 		return(
 			<div>
-				<table>
+				<table id='detail-display'>
 					<tr>
 						<th>Description</th>
 						<th>Rate</th>

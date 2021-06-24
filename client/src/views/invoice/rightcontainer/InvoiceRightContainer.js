@@ -4,13 +4,8 @@ import Details from './DetailsDisplay'
 import './InvoiceRightContainer.css'
 
 class InvoiceRightContainer extends Component {
-	constructor() {
-		super()
-		this.state = {}
-	}
-	
 	render() {
-		const {state, unit, po, materials, details} = this.props
+		const {state, unit, po, materials, details, handleDelete} = this.props
 
 		return(
 			<div id='right-container'>
@@ -18,8 +13,10 @@ class InvoiceRightContainer extends Component {
 					state={state} 
 					unit={unit}
 					po={po}
-				/>
-				<Details data={details}/>
+				/><br/>
+				<Details 
+					data={details}
+					handleDelete={handleDelete}/>
 			</div>
 		)
 	}
