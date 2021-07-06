@@ -63,15 +63,37 @@ router.post('/api/post/newcontact', (req, res) => {
 		.catch(e => console.error(e.stack))
 })
 
+router.post('/api/post/invoice', (req, res) => {
+	const invoice_text = 'INSERT INTO invoice(user_id,created_date,due_date,labor_cost,total_due) '
+	const value_text = 'VALUES($1, NOW(), NOW()+INTERVAL \'14 DAYS\', $2, $3) RETURNING invoice_id'
+	const detail_text = 'INSERT INTO details(invoice_id,descr,rate,qty) VALUES($1,$2,$3,$4)'
+	const material_text = 'INSERT INTO materials(invoice_id,item,cost,count) VALUES($1,$2,$3,$4)'
+	const invoice_values = [req.body.user_id, req.body.labor, 1000.75]
+	
+	pool.query(invoice_text.concat(value_text), invoice_values)
+		.then(res => {
+			req.body.details.map(elem => {
+				const detail_values = [res.rows[0].invoice_id, elem.desc, elem.rate, elem.qty]		
+				pool.query(detail_text, detail_values)
+					.catch(e => console.error(e.stack))
+			})
+
+			req.body.materials.map(elem => {
+				const material_values = [res.rows[0].invoice_id, elem.item, elem.cost, elem.count]
+				pool.query(material_text, material_values)
+				.catch(e => console.error(e.stack))
+			})
+		})
+		.catch(e => console.error(e.stack))
+})
+
 router.delete('/api/delete/contact', (req, res) => {
 	const a_text = 'DELETE FROM addr WHERE user_id=$1'	
 	const value = [req.query.key]
-	pool
-		.query(a_text, value)
+	pool.query(a_text, value)
 		.then(res => {
 			const u_text = 'DELETE FROM users WHERE user_id=$1'
-			pool
-				.query(u_text, value)
+			pool.query(u_text, value)
 				.then(res => console.log(res))
 				.catch((err) => console.error(err.stack))
 		})

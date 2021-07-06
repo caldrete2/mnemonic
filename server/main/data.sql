@@ -1,8 +1,4 @@
-INSERT INTO users (name, email) 
-VALUES ('john', 'john@mail.com');
-INSERT INTO users (name, email) 
-VALUES ('cesar', 'cesar@mail.com');
-INSERT INTO addr (owner, street, city, state, zipcode) 
-VALUES ('john', '108 N Hebbron Ave', 'Salinas', 'CA', '93905');
-INSERT INTO addr (owner, street, city, state, zipcode) 
-VALUES ('john', '1237 La Mirada Dr', 'Salinas', 'CA', '93901');
+INSERT INTO invoice (user_id, created_date, due_date, labor_cost, total_due)
+VALUES (2, NOW(), NOW()+7, 50.00, 350.00)
+INSERT INTO invoice (user_id, created_date, due_date, labor_cost, total_due)
+VALUES (96, NOW(), NOW()+7, 75.00, 200.00)
