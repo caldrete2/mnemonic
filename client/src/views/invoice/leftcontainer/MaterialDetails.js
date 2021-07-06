@@ -3,16 +3,16 @@ import React, {Component} from 'react'
 class MaterialDetails extends Component {
 	render() {
 		const {handleChange, detailClick} = this.props
-		const {material, count, cost} = this.props.state
+		const {item, count, cost} = this.props.state
 
 		return(
 			<main>
 				<form>
-					<label>Material</label><br/>
+					<label>Item</label><br/>
 					<input
-						name='material'
+						name='item'
 						type='text'
-						value={material}
+						value={item}
 						onChange={handleChange}
 					/><br/>
 					<label>Count</label><br/>

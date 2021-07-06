@@ -2,18 +2,18 @@ import React, {Component} from 'react'
 import * as FaIcons from 'react-icons/fa'
 import './DetailsDisplay.css'
 
-class DetailsDisplay extends Component {
+class MaterialsDisplay extends Component {
 	render() {
 		const {data, handleDelete} = this.props
-		const detailList = data.map((elem, i) => {
+		const materialList = data.map((elem, i) => {
 			return(
 				<tr key={i}>
-					<td>{elem.desc}</td>
-					<td>{elem.rate}</td>
-					<td>{elem.qty}</td>
+					<td>{elem.item}</td>
+					<td>{elem.cost}</td>
+					<td>{elem.count}</td>
 					<td>{elem.total}</td>
 					<td><FaIcons.FaTrash 
-							onClick={()=> handleDelete(elem, 'details')}
+							onClick={()=> handleDelete(elem, 'materials')}
 						/></td>
 				</tr>
 			)
@@ -23,15 +23,15 @@ class DetailsDisplay extends Component {
 			<div>
 				<table id='detail-display'>
 					<tr>
-						<th>Description</th>
-						<th>Rate</th>
-						<th>Qty</th>
+						<th>Item</th>
+						<th>Cost</th>
+						<th>Count</th>
 						<th>Line Total</th>
 					</tr>
-					{detailList}
+					{materialList}
 				</table>
 			</div>
 		)
 	}
 }
-export default DetailsDisplay
+export default MaterialsDisplay

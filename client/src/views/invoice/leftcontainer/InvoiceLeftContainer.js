@@ -6,7 +6,7 @@ import './InvoiceLeftContainer.css'
 
 class InvoiceLeftContainer extends Component {	
 	render() {
-		const {state, handleChange, detailClick} = this.props
+		const {state, handleChange, handleSubmit, detailClick} = this.props
 
 		return(
 			<div id='left-container'>
@@ -36,6 +36,9 @@ class InvoiceLeftContainer extends Component {
 						value={state.labor}
 						onChange={handleChange}
 					/>
+				</div>
+				<div id='invoice-button'>
+					<button onClick={handleSubmit}>Submit</button>
 				</div>
 			</div>
 		)
