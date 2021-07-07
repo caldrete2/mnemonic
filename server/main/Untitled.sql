@@ -34,7 +34,7 @@ CREATE TABLE "details" (
 CREATE TABLE "materials" (
   "material_id" SERIAL PRIMARY KEY,
   "invoice_id" int REFERENCES invoice(invoice_id),
-  "item" text,
+  "item" varchar,
   "count" int,
   "cost" float
 );

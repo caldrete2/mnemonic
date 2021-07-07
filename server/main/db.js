@@ -1,11 +1,11 @@
 const { Pool } = require('pg')
 
+var connString = (process.env.PORT)? 
+	process.env.DATABASE_URL : 'postgresql://my_user:root@localhost:5432/mnemonic'
+
 const pool = new Pool({
-  user: 'my_user',
-  host: 'localhost',
-  database: 'mnemonic',
-  password: 'root',
-  post: 5432
+	connectionString: connString,
+	ssl: { rejectUnauthorized: false }
 })
 
 module.exports = pool
