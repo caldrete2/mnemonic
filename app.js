@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var port = process.env.PORT || 5000;
 
 //import routes
 var indexRouter = require('./server/main/routes');
@@ -18,4 +19,4 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app routes
 app.use('/', indexRouter);
 
-module.exports = app;
+app.listen(port, () => console.log(`App listening on port ${port}!`))
